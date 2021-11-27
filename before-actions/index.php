@@ -2,6 +2,13 @@
 
 // get route
 $r = @$_GET['r'];
+if($r)
+{
+    if(startWith($r, "api"))
+    {
+        return true;
+    }
+}
 
 // auth from jwt
 $auth = auth();
