@@ -4,16 +4,22 @@ class Database
 {
     public $query = '';
     public $table = '';
+    public $type = '';
     function __construct($connection)
     {
+        $db = config('database');
         $this->connection = $connection;
+        $this->type = $db['driver'];
     }
 
     function get_pk()
     {
         $query   = "SHOW KEYS FROM $this->table WHERE Key_name = 'PRIMARY'";
         $pk      = $this->connection->query($query);
-        $pk      = $pk->fetch_object();
+        if($this->type == 'PDO')
+            $pk      = $pk->fetchObject();
+        else
+            $pk      = $pk->fetch_object();
         return $pk->Column_name;
     }
 
@@ -98,29 +104,51 @@ class Database
 
     function exec($type = false)
     {
-        $query_result = $this->connection->query($this->query);
-        if($query_result)
+        if($this->type == 'PDO')
         {
-            if($type == 'all')
-                return json_decode(json_encode($query_result->fetch_all(MYSQLI_ASSOC)));
-            if($type == 'single')
-                return $query_result->fetch_object();
             if(in_array($type,['insert','update']))
             {
-                $last_id = $this->connection->insert_id;
+                $query_result = $this->connection->exec($this->query);
+                // $last_id = $this->connection->insert_id;
+                $last_id = $this->connection->lastInsertId();
                 $pk = $this->get_pk();
                 return $this->single($this->table,[$pk=>$last_id]);
+            }
+            else
+            {
+                $query_result = $this->connection->query($this->query);
+                if($type == 'all')
+                    return $query_result->fetchAll(PDO::FETCH_OBJ);
+                if($type == 'single')
+                    return $query_result->fetchObject();
             }
         }
         else
         {
-            // echo $this->query;
-            // echo "<br>";
-            print_r($this->connection->error);
-            die();
-        }
+            $query_result = $this->connection->query($this->query);
+            if($query_result)
+            {
+                if($type == 'all')
+                    return json_decode(json_encode($query_result->fetch_all(MYSQLI_ASSOC)));
+                if($type == 'single')
+                    return $query_result->fetch_object();
+                if(in_array($type,['insert','update']))
+                {
+                    $last_id = $this->connection->insert_id;
+                    $pk = $this->get_pk();
+                    return $this->single($this->table,[$pk=>$last_id]);
+                }
+            }
+            else
+            {
+                // echo $this->query;
+                // echo "<br>";
+                print_r($this->connection->error);
+                die();
+            }
 
-        return $query_result;
+            return $query_result;
+        }
     }
 
     function build_clause($clause)

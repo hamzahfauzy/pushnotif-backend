@@ -14,15 +14,44 @@ function config($key = false)
 
 function conn(){
     $database = config('database');
+    $type = $database['driver'];
+    if($type=='PDO')
+    {
+        // Connect using UNIX sockets
+        if($database['socket'])
+        {
+            $dsn = sprintf(
+                'mysql:dbname=%s;unix_socket=%s',
+                $database['dbname'],
+                $database['socket']
+            );
+        }
+        else
+        {
+            $dsn = sprintf(
+                'mysql:dbname=%s;host=%s',
+                $database['dbname'],
+                $database['host']
+            );
+        }
 
-    return new mysqli(
-        $database['host'],
-        $database['username'],
-        $database['password'],
-        $database['dbname'],
-        null,
-        $database['socket']
-    );
+        // Connect to the database.
+        $conn = new PDO($dsn, $database['username'], $database['password']);
+
+        return $conn;
+    }
+    else
+    {
+        return new mysqli(
+            $database['host'],
+            $database['username'],
+            $database['password'],
+            $database['dbname'],
+            $database['port'],
+            $database['socket']
+        );
+    }
+
 }
 
 function load_page($page)
