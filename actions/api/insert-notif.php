@@ -2,7 +2,8 @@
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 
-$factory = (new Factory)->withServiceAccount('pushnotif-332914-0af7675355ad.json');
+// $factory = (new Factory)->withServiceAccount('pushnotif-332914-5bfa4f6c5b75.json');
+$factory = (new Factory)->withServiceAccount('egovtest-3c158-d23be64eff7a.json');
 /*
 Insert notification via POST request
 endpoint : index.php?action=api/insert-notif
