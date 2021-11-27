@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/notif/
+    - /bin/cp -a * $DEPLOYPATH
+    - /bin/cp -r public/. /home/notif/public_html
