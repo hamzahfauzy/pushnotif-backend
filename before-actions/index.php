@@ -1,14 +1,11 @@
 <?php
+// api route
+$api = @$_GET['action'];
+if($api && startWith($api, "api"))
+    return true;
 
 // get route
 $r = @$_GET['r'];
-if($r)
-{
-    if(startWith($r, "api"))
-    {
-        return true;
-    }
-}
 
 // auth from jwt
 $auth = auth();
