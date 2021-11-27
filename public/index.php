@@ -1,5 +1,8 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
 session_start();
 require '../vendor/autoload.php';
 require '../functions.php';
