@@ -19,7 +19,9 @@ function conn(){
         $database['host'],
         $database['username'],
         $database['password'],
-        $database['dbname']
+        $database['dbname'],
+        null,
+        $database['socket']
     );
 }
 
@@ -263,3 +265,5 @@ function pushNotification($to, $data = [])
     curl_close();
     return json_decode($result);
 }
+
+// egovtest-3c158-d23be64eff7a.json
