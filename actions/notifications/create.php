@@ -4,16 +4,15 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 try {
     //code...
-
-
-// $factory = (new Factory)->withServiceAccount('pushnotif-332914-5bfa4f6c5b75.json');
-$factory = (new Factory)->withServiceAccount('egovtest-3c158-d23be64eff7a.json');
+$factory = (new Factory)->withServiceAccount('egov-labura-firebase-adminsdk-u8e1i-488c86f842.json');
 
 if(request() == 'POST')
 {
     $conn  = conn();
     $db    = new Database($conn);
     $notif = $_POST['notifications'];
+    $notif['contents'] = preg_replace('"\b(https?://\S+)"', '<a href="$1" target="_blank">$1</a>', $notif['contents']);
+    $notif['contents'] = preg_replace('"\b(http?://\S+)"', '<a href="$1" target="_blank">$1</a>', $notif['contents']);
     // $receivers = $_POST['receivers'];
     // $pegawais  = [];
     $messaging = $factory->createMessaging();
@@ -28,7 +27,7 @@ if(request() == 'POST')
         ]
     ]);
     
-    $messaging->send($message);
+    $message = $messaging->send($message);
 
     $notif = $db->insert('notifications',$notif);
     if($notif)

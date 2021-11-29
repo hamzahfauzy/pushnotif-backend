@@ -2,8 +2,7 @@
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 
-// $factory = (new Factory)->withServiceAccount('pushnotif-332914-5bfa4f6c5b75.json');
-$factory = (new Factory)->withServiceAccount('egovtest-3c158-d23be64eff7a.json');
+$factory = (new Factory)->withServiceAccount('egov-labura-firebase-adminsdk-u8e1i-488c86f842.json');
 /*
 Insert notification via POST request
 endpoint : index.php?action=api/insert-notif
@@ -20,6 +19,9 @@ return :
 
 $conn  = conn();
 $db    = new Database($conn);
+
+$_POST['contents'] = preg_replace('"\b(https?://\S+)"', '<a href="$1" target="_blank">$1</a>', $_POST['contents']);
+$_POST['contents'] = preg_replace('"\b(http?://\S+)"', '<a href="$1" target="_blank">$1</a>', $notif['contents']);
 
 $messaging = $factory->createMessaging();
 $message = CloudMessage::fromArray([
