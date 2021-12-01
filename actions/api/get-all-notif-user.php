@@ -8,8 +8,8 @@ $db->query = $query;
 $notifications = $db->exec('all');
 foreach($notifications as $notif)
 {
-    $tanggal = date('Y-m-d',strtotime($notif->sent_at));
-    $waktu = date('H:i',strtotime($notif->sent_at));
+    $tanggal = date('Y-m-d',strtotime($notif->created_at));
+    $waktu = date('H:i',strtotime($notif->created_at));
     $notif->tanggal = tgl_indo($tanggal) .' '.$waktu;
 }
 echo json_encode($notifications);
