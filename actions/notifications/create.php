@@ -15,19 +15,23 @@ if(request() == 'POST')
     $notif['contents'] = preg_replace('"\b(http?://\S+)"', '<a href="$1" target="_blank">$1</a>', $notif['contents']);
     // $receivers = $_POST['receivers'];
     // $pegawais  = [];
-    $messaging = $factory->createMessaging();
-    $message = CloudMessage::fromArray([
-        'topic' => 'bc_notif',
-        'notification' => [
-            'title'=>'Notifikasi Baru',
-            'body' =>$notif['contents']
-        ],
-        'data' => [
-            'url' => $notif['url']
-        ]
-    ]);
-    
-    $message = $messaging->send($message);
+    if($_POST['select_sent_at'] == 0)
+    {
+        unset($notif['sent_at']);
+        $messaging = $factory->createMessaging();
+        $message = CloudMessage::fromArray([
+            'topic' => 'bc_notif',
+            'notification' => [
+                'title'=>'Notifikasi Baru',
+                'body' =>$notif['contents']
+            ],
+            'data' => [
+                'url' => $notif['url']
+            ]
+        ]);
+        
+        $message = $messaging->send($message);
+    }
 
     $notif = $db->insert('notifications',$notif);
     if($notif)

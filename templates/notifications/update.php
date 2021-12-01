@@ -7,25 +7,18 @@
         <form action="" method="post">
             <div class="form-group">
                 <label for="">Konten</label>
-                <textarea name="notifications[contents]" class="form-control" rows="10" placeholder="Konten Notifikasi"></textarea>
+                <textarea name="notifications[contents]" class="form-control" rows="10" placeholder="Konten Notifikasi"><?=$notification->contents?></textarea>
             </div>
             <div class="form-group">
                 <label for="">URL</label>
-                <input type="url" name="notifications[url]" class="form-control" placeholder="URL">
+                <input type="url" name="notifications[url]" class="form-control" placeholder="URL" value="<?=$notification->url?>">
             </div>
             <div class="form-group">
-                <label for="">Dikirim Pada</label>
-                <select name="select_sent_at" id="select_sent_at" class="form-control" onchange="toggleSentAt()">
-                    <option value="0">Sekarang</option>
-                    <option value="1">Terjadwal</option>
-                </select>
-            </div>
-            <div class="form-group" id="sent_at_group" style="height:0;overflow:hidden;margin-bottom:0;">
                 <label for="">Jadwal Kirim</label>
-                <input type="datetime-local" value="<?= date('Y-m-d\TH:i') ?>" name="notifications[sent_at]" id="sent_at" class="form-control">
+                <input type="datetime-local" value="<?= date('Y-m-d\TH:i',strtotime($notification->sent_at)) ?>" name="notifications[sent_at]" id="sent_at" class="form-control">
                 <br>
                 <label for="is_loop">
-                    <input id="is_loop" type="checkbox" name="notifications[is_loop]" value="1"> Berulang
+                    <input id="is_loop" type="checkbox" name="notifications[is_loop]" value="1" <?=$notification->is_loop?'checked=""':''?>> Berulang
                 </label>
             </div>
             <!-- <div class="form-group">

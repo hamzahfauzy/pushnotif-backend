@@ -160,6 +160,9 @@ class Database
             foreach($clause as $key => $value)
             {
                 $value = $this->connection->real_escape_string($value);
+                if($value == 'NULL')
+                $string .= "$key=$value";
+                else
                 $string .= "$key='$value'";
                 $last_iteration = !(--$count_clause);
                 if(!$last_iteration)
@@ -179,6 +182,9 @@ class Database
             foreach($values as $key => $value)
             {
                 $value = $this->connection->real_escape_string($value);
+                if($value == 'NULL')
+                $string .= "$key=$value";
+                else
                 $string .= "$key='$value'";
                 $last_iteration = !(--$count_values);
                 if(!$last_iteration)

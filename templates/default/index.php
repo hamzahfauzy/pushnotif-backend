@@ -19,7 +19,8 @@
                         <th>#</th>
                         <th>Konten</th>
                         <th>Dikirim Pada</th>
-                        <!-- <th>Penerima</th> -->
+                        <th>Penerima</th>
+                        <th>Berulang</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -34,8 +35,12 @@
                         <td><?=$key+1?></td>
                         <td><?=$notification->contents ?></td>
                         <td><?=$notification->sent_at?></td>
-                        <!-- <td><a href="index.php?r=notifications/view&id=<?=$notification->id?>" class="btn btn-primary">Lihat Penerima</a></td> -->
+                        <td><?=$notification->user_name != null ? $notification->user_name : 'Semua Pengguna' ?></td>
+                        <td><?=$notification->is_loop ? 'Ya' : 'Tidak' ?></td>
                         <td>
+                            <?php if($notification->sent_at): ?>
+                            <a href="index.php?r=notifications/update&id=<?=$notification->id?>" class="btn btn-warning text-strong"><i class="ti ti-pencil"></i></a>
+                            <?php endif ?>
                             <a href="index.php?action=notifications/delete&id=<?=$notification->id?>" class="btn btn-danger text-strong"><i class="ti ti-trash"></i></a>
                         </td>
                     </tr>
