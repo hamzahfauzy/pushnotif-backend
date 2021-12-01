@@ -8,3 +8,4 @@ $db->delete('notifications',[
 
 set_flash_msg(['success'=>'Notifikasi Berhasil Dihapus']);
 header('location:index.php');
+die();

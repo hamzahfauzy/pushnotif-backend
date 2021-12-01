@@ -38,6 +38,7 @@ if(request() == 'POST')
     {
         set_flash_msg(['success'=>'Buat Notifikasi Berhasil']);
         header('location:index.php');
+        die();
     }
 }
 

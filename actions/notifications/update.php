@@ -23,6 +23,7 @@ if(request() == 'POST')
     {
         set_flash_msg(['success'=>'Edit Notifikasi Berhasil']);
         header('location:index.php');
+        die();
     }
 }
 
