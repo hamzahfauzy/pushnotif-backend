@@ -1,10 +1,5 @@
 <?php
 
-require '../libs/JwtAuth.php';
-require '../libs/Database.php';
-
-$config = require '../config/main.php';
-
 function config($key = false)
 {
     global $config;

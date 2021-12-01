@@ -5,6 +5,10 @@ header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 session_start();
 require '../vendor/autoload.php';
+require '../libs/JwtAuth.php';
+require '../libs/Database.php';
+
+$config = require '../config/main.php';
 require '../functions.php';
 
 // do before action

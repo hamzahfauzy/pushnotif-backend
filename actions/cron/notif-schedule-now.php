@@ -3,7 +3,7 @@
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 
-$factory = (new Factory)->withServiceAccount('egov-labura-firebase-adminsdk-u8e1i-488c86f842.json');
+$factory = (new Factory)->withServiceAccount('public/egov-labura-firebase-adminsdk-u8e1i-488c86f842.json');
 
 $conn  = conn();
 $db    = new Database($conn);
@@ -19,10 +19,10 @@ foreach($notifications as $notif)
         'topic' => 'bc_notif',
         'notification' => [
             'title'=>'Notifikasi Baru',
-            'body' =>$notif['contents']
+            'body' =>$notif->contents
         ],
         'data' => [
-            'url' => $notif['url']
+            'url' => $notif->url
         ]
     ]);
 }
