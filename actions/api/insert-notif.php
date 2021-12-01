@@ -21,7 +21,7 @@ $conn  = conn();
 $db    = new Database($conn);
 
 $_POST['contents'] = preg_replace('"\b(https?://\S+)"', '<a href="$1" target="_blank">$1</a>', $_POST['contents']);
-$_POST['contents'] = preg_replace('"\b(http?://\S+)"', '<a href="$1" target="_blank">$1</a>', $notif['contents']);
+$_POST['contents'] = preg_replace('"\b(http?://\S+)"', '<a href="$1" target="_blank">$1</a>', $_POST['contents']);
 
 $messaging = $factory->createMessaging();
 $message = CloudMessage::fromArray([
