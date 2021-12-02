@@ -34,7 +34,7 @@
                     <tr>
                         <td><?=$key+1?></td>
                         <td><?=$notification->contents ?></td>
-                        <td><?=$notification->sent_at?></td>
+                        <td><?=$notification->sent_at??$notification->created_at?></td>
                         <td><?=$notification->user_name != null ? $notification->user_name : 'Semua Pengguna' ?></td>
                         <td><?=$notification->is_loop ? 'Ya' : 'Tidak' ?></td>
                         <td>
