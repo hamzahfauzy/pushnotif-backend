@@ -25,4 +25,6 @@ foreach($notifications as $notif)
             'url' => $notif->url
         ]
     ]);
+
+    $message = $messaging->send($message);
 }
