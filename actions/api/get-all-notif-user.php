@@ -3,7 +3,7 @@
 $conn  = conn();
 $db    = new Database($conn);
 
-$query = "SELECT * FROM notifications WHERE user_id=$_GET[user_id] or user_id is NULL ORDER BY id DESC";
+$query = "SELECT * FROM notifications WHERE (user_id=$_GET[user_id] OR user_id IS NULL) AND sent_at IS NULL ORDER BY id DESC";
 $db->query = $query;
 $notifications = $db->exec('all');
 foreach($notifications as $notif)
