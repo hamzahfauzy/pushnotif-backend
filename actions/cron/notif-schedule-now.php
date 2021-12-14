@@ -8,7 +8,7 @@ $factory = (new Factory)->withServiceAccount('public/egov-labura-firebase-admins
 $conn  = conn();
 $db    = new Database($conn);
 
-$query = "SELECT * FROM notifications WHERE is_loop IS NULL AND sent_at LIKE '%".date('Y-m-d H:i')."%'";
+$query = "SELECT * FROM notifications WHERE active_status = 1 AND is_loop IS NULL AND sent_at LIKE '%".date('Y-m-d H:i')."%'";
 $db->query = $query;
 $notifications = $db->exec('all');
 
