@@ -31,6 +31,13 @@
                 </select>
             </div> -->
             <div class="form-group">
+                <label for="">Enable</label>
+                <select name="notifications[active_status]" class="form-control">
+                    <option value="1" <?=$notification->active_status?'selected=""':''?>>Ya</option>
+                    <option value="0" <?=!$notification->active_status?'selected=""':''?>>Tidak</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-success btn-sm">Simpan</button>
                 <a href="index.php" class="btn btn-warning btn-sm">Kembali</a>
             </div>

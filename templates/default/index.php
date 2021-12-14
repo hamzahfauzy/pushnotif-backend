@@ -21,6 +21,7 @@
                         <th>Dikirim Pada</th>
                         <th>Penerima</th>
                         <th>Berulang</th>
+                        <th>Enable</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                         <td><?=$notification->sent_at??$notification->created_at?></td>
                         <td><?=$notification->user_name != null ? $notification->user_name : 'Semua Pengguna' ?></td>
                         <td><?=$notification->is_loop ? 'Ya' : 'Tidak' ?></td>
+                        <td><?=$notification->active_status ? 'Ya' : 'Tidak' ?></td>
                         <td>
                             <?php if($notification->sent_at): ?>
                             <a href="index.php?r=notifications/update&id=<?=$notification->id?>" class="btn btn-warning text-strong"><i class="ti ti-pencil"></i></a>
