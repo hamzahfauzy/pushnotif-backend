@@ -1,11 +1,11 @@
 <nav class="navbar top-navbar col-lg-12 col-12 p-0">
     <div class="container">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo text-white font-weight-bold" href="index.php">
+            <a class="navbar-brand brand-logo text-white" href="index.php">
                 <img src="images/logo.png" alt="logo" />
                 NOTIF MANAGER
             </a>
-            <a class="navbar-brand brand-logo-mini text-white font-weight-bold" href="index.php">
+            <a class="navbar-brand brand-logo-mini text-white" href="index.php">
                 <img src="images/logo.png" alt="logo" />
             </a>
         </div>
