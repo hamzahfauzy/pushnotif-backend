@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="<?= base_url() ?>/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="<?= base_url() ?>/vendors/summernote/dist/summernote-lite.css">
+  <!-- <link rel="stylesheet" href="<?= base_url() ?>/vendors/summernote/dist/summernote-lite.css"> -->
   <link rel="stylesheet" href="<?= base_url() ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="<?= base_url() ?>/vendors/select2/select2.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>/vendors/jquery-tags-input/jquery.tagsinput.min.css">
+  <!-- <link rel="stylesheet" href="<?= base_url() ?>/vendors/jquery-tags-input/jquery.tagsinput.min.css"> -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url() ?>/css/style.css">

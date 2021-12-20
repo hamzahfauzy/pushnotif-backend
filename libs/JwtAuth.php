@@ -7,7 +7,17 @@ class JwtAuth
         if(isset($_COOKIE[config('jwt_cookie_name')]))
         {
             $token = $_COOKIE[config('jwt_cookie_name')];
-            return self::decode($token, config('jwt_secret'));
+            $data  = self::decode($token, config('jwt_secret'));
+
+            $roles      = $data->roles;
+            $domain     = config('app_domain_name');
+            $key        = array_search($domain, array_column($roles, 'domain'));
+            $role       = $roles[$key];
+            $role_name  = config('role');
+            if(isset($role_name[$role->role_id]))
+                $data->role_name = $role_name[$role->role_id];
+            
+            return $data;
         }
 
         return [];

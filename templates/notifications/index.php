@@ -4,7 +4,7 @@ $auth = auth();
 ?>
 <div class="card">
     <div class="card-header">
-        <h4 class="m-0">List Notifikasi</h4>
+        <h4 class="m-0">List Notifikasi <?=$type?></h4>
     </div>
     <div class="card-body">
         <?php if($auth->role_name == 'Admin'): ?>
